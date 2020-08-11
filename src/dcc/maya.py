@@ -1,7 +1,12 @@
-"""This module contains code to manipulate nodes and attributes in Maya
+"""This module contains code to manipulate nodes and attributes in Maya.
+Support for new texture types can be added by adding a new class by inherting
+it form _BaseTexture and implementing the abstact methods.
 """
 
+import os
+
 import pymel.core as pc
+
 from TexMan.src.core import _BaseTexture
 
 class FileNode(_BaseTexture):
@@ -16,11 +21,17 @@ class FileNode(_BaseTexture):
     def setPath(self, filePath):
         """Sets the texture path to filePath
         """
-        self._node.ftn.set(filePath)
+        self._node.ftn.set(filePath.replace("\\", "/"))
 
     def getPath(self):
         """Returns the file path of the texture
         """
-        self._node.ftn.get()
-
-# add support for new texture types here
+        return os.path.normpath(self._node.ftn.get())
+    
+    @classmethod
+    def getAllObjects(cls):
+        """Returns all the objects of this texture type from the scene
+        return -- list
+        """
+        return [cls(fileNode) for fileNode in pc.ls(et=pc.nt.File)
+                if fileNode.ftn.get()]
