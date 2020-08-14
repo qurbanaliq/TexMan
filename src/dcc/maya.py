@@ -24,7 +24,9 @@ class FileNode(_BaseTexture):
         """Initializer
         node -- a file node object in Maya
         """
-        super(FileNode, self).__init__(node)
+        super(FileNode, self).__init__()
+
+        self._node = node
     
     def setPath(self, filePath):
         """Sets the texture path to filePath

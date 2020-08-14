@@ -2,7 +2,6 @@
 """
 
 from PySide2.QtWidgets import QMainWindow, QTreeWidgetItem
-from PySide2.QtGui import QApplication
 
 from TexMan.ui.ui_main_window import Ui_MainWindow
 from TexMan.src.core import Application

@@ -14,12 +14,8 @@ class _BaseTexture(object):
     """
     __metaclass__ = abc.ABCMeta
 
-    def __init__(self, node):
-        """Initializer
-        node -- the underlying node in a dcc application
-        """
+    def __init__(self):
         super(_BaseTexture, self).__init__()
-        self._node = node
 
     @abc.abstractmethod
     def setPath(self, filePath):
@@ -84,7 +80,8 @@ class Application(object):
         # get the dcc package path
         dccPath = os.path.join(os.path.dirname(__file__), "dcc")
         # list the dcc application modules
-        modules = [os.path.splitext(m)[0] for m in os.listdir(dccPath)]
+        modules = [os.path.splitext(m)[0] for m in os.listdir(dccPath)
+                    if m.endswith(".py") and not m.startswith("_")]
         # try to import modules in order to register the texture classes
         for mod in modules:
             try:
