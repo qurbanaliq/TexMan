@@ -11,7 +11,7 @@ from PySide2.QtWidgets import qApp
 from TexMan.src.core import _BaseTexture
 
 def getMainWindow():
-    """Returns Maya main window widget
+    """Returns Houdini main window widget
     """
     return hou.qt.mainWindow()
 

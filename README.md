@@ -6,8 +6,9 @@ Here are all the features that are currently offered by this tool and the ones w
 - Support for Maya File node texture.
 - List all texture folders from which the textures are linked in a DCC.
 - List all the texture file names linked from the listed folders.
-### To be supported
 - Support for Houdini textures.
+- Support for Maya textures
+### To be supported
 - Highlight missing textures (the ones that doesn't exist in the file system).
 - Replace folder path to link the same textures from a new folder.
 - Remove textures from the scene (optionally from file system).
