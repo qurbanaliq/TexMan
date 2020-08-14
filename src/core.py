@@ -61,6 +61,7 @@ class Application(object):
 
     def __init__(self):
         super(Application, self).__init__()
+        self._module = None # module to deal with DCC application
         self._importDCCModule()
     
     @classmethod
@@ -69,6 +70,12 @@ class Application(object):
         textureClass -- A class type representing a texture
         """
         cls.__textures[textureClass.__name__] = textureClass
+    
+    def getMainWindow(self):
+        """Returns the main window widget to be used a parent widget
+        """
+        if self._module:
+            return self._module.getMainWindow()
     
     def _importDCCModule(self):
         """Imports the relavant dcc module from dcc package and registers it's
@@ -81,7 +88,7 @@ class Application(object):
         # try to import modules in order to register the texture classes
         for mod in modules:
             try:
-                _ = importlib.import_module("TexMan.src.dcc." + mod)
+                self._module = importlib.import_module("TexMan.src.dcc." + mod)
             except ImportError:
                 continue
             else: # break the loop if the module gets imported

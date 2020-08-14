@@ -6,8 +6,16 @@ it form _BaseTexture and implementing the abstact methods.
 import os
 
 import pymel.core as pc
+from PySide2.QtWidgets import qApp
 
 from TexMan.src.core import _BaseTexture
+
+def getMainWindow():
+    """Returns Maya main window widget
+    """
+    for widget in qApp.topLevelWidgets():
+        if widget.objectName().lower().startswith("mayawindow"):
+            return widget
 
 class FileNode(_BaseTexture):
     """This class represents a file node texture in Maya
