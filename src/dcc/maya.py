@@ -44,4 +44,35 @@ class FileNode(_BaseTexture):
         return -- list
         """
         return [cls(fileNode) for fileNode in pc.ls(et=pc.nt.File)
-                if fileNode.ftn.get()]
+                if fileNode.ftn.get() # if it does have a texture
+                ]
+
+class AiImage(_BaseTexture):
+    """This class represents a AiImage texture of Arnold in Maya.
+    """
+    def __init__(self, node):
+        """Initilizer
+        node -- an aiImage node object in Maya.
+        """
+        
+        self._node = node
+    
+    def setPath(self, filePath):
+        """Sets the texture path to filePath.
+        """
+        self._node.filename.set(filePath.replace("\\", '/'))
+    
+    def getPath(self):
+        """Returns the file path of the texture.
+        """
+        return os.path.normpath(self._node.filename.get())
+    
+    @classmethod
+    def getAllObjects(cls):
+        """Returns all the objects of this texture type from the scene.
+        return -- list
+        """
+
+        return [cls(node) for node in pc.ls(et=pc.nt.AiImage)
+                if node.filename.get() # if it does have a texture
+                ]

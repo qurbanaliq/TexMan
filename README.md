@@ -3,8 +3,7 @@ TexMan is a tool for managing textures in DCC applications such as Maya, Houdini
 ## Features
 Here are all the features that are currently offered by this tool and the ones which will be offered in the future.
 ### Supported
-- Support for Maya File node texture.
-- List all texture folders from which the textures are linked in a DCC.
+- List all texture folders from which the textures are linked in the scene.
 - List all the texture file names linked from the listed folders.
 - Support for Houdini textures.
 - Support for Maya textures
