@@ -20,13 +20,32 @@ class Window(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("TexMan")
 
-        self._populate()
+        # show info label if parent doesn't exist
+        if parent is None:
+            self._showInfoLabel("This DCC application isn't supported")
+        else:
+            # populate the window with available textures
+            self._populate()
+
+    def _showInfoLabel(self, message):
+        """Displays an info label if no texture found or DCC not supported.
+        """
+        self.infoLabel.show()
+        self.infoLabel.setText(message)
+        self.treeWidget.hide()
 
     def _populate(self):
         """Populates the window with available folder paths and texture
         file names
         """
+
+        # get all the available textures
         allTextures = self.__app.getAllTextures()
+
+        # show info label if textures not found
+        if not allTextures:
+            self._showInfoLabel("No textures found in the scene")
+
         for texClassName in allTextures: # loop through all texture types
             texClassNameItem = QTreeWidgetItem(self.treeWidget)
             texClassNameItem.setText(0, texClassName)

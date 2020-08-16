@@ -35,6 +35,17 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.treeWidget)
 
+        self.infoLabel = QLabel(self.centralwidget)
+        self.infoLabel.setObjectName(u"infoLabel")
+        font = QFont()
+        font.setPointSize(10)
+        font.setStrikeOut(False)
+        font.setKerning(True)
+        self.infoLabel.setFont(font)
+        self.infoLabel.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.infoLabel)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -51,5 +62,6 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"TexMan", None))
+        self.infoLabel.setText(QCoreApplication.translate("MainWindow", u"Info", None))
     # retranslateUi
 

@@ -30,6 +30,23 @@
       </column>
      </widget>
     </item>
+    <item>
+     <widget class="QLabel" name="infoLabel">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <strikeout>false</strikeout>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="text">
+       <string>Info</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
