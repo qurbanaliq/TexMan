@@ -1,10 +1,16 @@
 """This module contains the code to create GUI for managing textures.
 """
 
+import os
+
 from PySide2.QtWidgets import QMainWindow, QTreeWidgetItem
+from PySide2.QtGui import QIcon
 
 from TexMan.ui.ui_main_window import Ui_MainWindow
 from TexMan.src.core import Application
+
+_rootPath = os.path.dirname(os.path.dirname(__file__))
+_iconPath = os.path.join(_rootPath, 'icons')
 
 class Window(QMainWindow, Ui_MainWindow):
     """Mian window for managing textures. The window lists all the folders
@@ -53,8 +59,13 @@ class Window(QMainWindow, Ui_MainWindow):
             for texPath in allTextures[texClassName]:
                 texPathItem = QTreeWidgetItem(texClassNameItem)
                 texPathItem.setText(0, texPath)
+                texPathItem.setIcon(0, QIcon(os.path.join(_iconPath, 'folder.png')))
                 # loop through all the texture files in this path
                 for texFile in allTextures[texClassName][texPath]:
                     texFileItem = QTreeWidgetItem(texPathItem)
                     texFileItem.setText(0, texFile.getFilename())
+                    if texFile.exists():
+                        texFileItem.setIcon(0, QIcon(os.path.join(_iconPath, "check.png")))
+                    else:
+                        texFileItem.setIcon(0, QIcon(os.path.join(_iconPath, "cross.png")))
             self.treeWidget.addTopLevelItem(texClassNameItem)

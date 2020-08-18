@@ -29,10 +29,16 @@ class _BaseTexture(object):
         """
         pass
 
+    def exists(self):
+        """Returns True if this texture file exists in the folder
+        """
+        return os.path.exists(self.getPath())
+
     def getFolderPath(self):
         """Returns the folder path texture is loaded from
         """
         return os.path.dirname(self.getPath())
+        # TODO: support for sequence of files
 
     def getFilename(self):
         """Return the filename of the texture
