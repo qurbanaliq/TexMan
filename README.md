@@ -6,11 +6,11 @@ Here are all the features that are currently offered by this tool and the ones w
 - List all texture folders from which the textures are linked in the scene.
 - List all the texture file names linked from the listed folders.
 - Support for Houdini textures.
-- Support for Maya textures
+- Support for Maya textures.
 - Highlight missing textures (the ones that doesn't exist in the file system).
+- Browse texture folder (right-click on folder path or texture to browse).
 ### To be supported
 - Replace folder path to link the same textures from a new folder.
 - Remove textures from the scene (optionally from file system).
 - Export All or Selected textures to a folder.
 - Copy selected folder path(s) and texture name(s) to the clipboard.
-- Browse texture folder

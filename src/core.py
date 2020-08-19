@@ -33,12 +33,12 @@ class _BaseTexture(object):
         """Returns True if this texture file exists in the folder
         """
         return os.path.exists(self.getPath())
+        # TODO: support for sequence of files
 
     def getFolderPath(self):
         """Returns the folder path texture is loaded from
         """
         return os.path.dirname(self.getPath())
-        # TODO: support for sequence of files
 
     def getFilename(self):
         """Return the filename of the texture
@@ -69,6 +69,9 @@ class Application(object):
     @classmethod
     def _registerTexture(cls, textureClass):
         """Register a texture class from dcc package to be used in the GUI
+        This is implemented as a classmethod, so the texture types can be
+        registered from anywhere without the need to create an instance of
+        this class.
         textureClass -- A class type representing a texture
         """
         cls.__textures[textureClass.__name__] = textureClass
