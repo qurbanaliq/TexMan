@@ -30,6 +30,7 @@ class Ui_MainWindow(object):
         __qtreewidgetitem.setText(0, u"1");
         self.treeWidget.setHeaderItem(__qtreewidgetitem)
         self.treeWidget.setObjectName(u"treeWidget")
+        self.treeWidget.setFocusPolicy(Qt.NoFocus)
         self.treeWidget.setColumnCount(1)
         self.treeWidget.header().setVisible(False)
 

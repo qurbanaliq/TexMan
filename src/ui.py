@@ -5,7 +5,7 @@ import os
 import subprocess
 
 from PySide2.QtWidgets import QMainWindow, QTreeWidgetItem, QMenu
-from PySide2.QtGui import QIcon
+from PySide2.QtGui import QIcon, QGuiApplication
 
 from TexMan.ui.ui_main_window import Ui_MainWindow
 from TexMan.src.core import Application
@@ -30,6 +30,13 @@ class Window(QMainWindow, Ui_MainWindow):
         self._folderItems = [] # tree widget items representing folders
         self._fileItems = [] # tree widget items representing file names
         self._contextMenu = None
+
+        # which method to call for each context menu action
+        self._contexMenuActions = {
+            "Browse Folder": self._browseFolder,
+            "Copy Text": self._copyText
+            # add more actions here
+        }
 
         # override the contex menu event
         self.treeWidget.contextMenuEvent = self._showContextMenu
@@ -90,8 +97,9 @@ class Window(QMainWindow, Ui_MainWindow):
         """
         if not self._contextMenu:
             self._contextMenu = QMenu(self)
-            action = self._contextMenu.addAction("Browse Folder")
-            action.triggered.connect(self._browseFolder)
+            for actName, method in self._contexMenuActions.items():
+                action = self._contextMenu.addAction(actName)
+                action.triggered.connect(method)
         self._contextMenu.popup(event.globalPos())
 
     def _browseFolder(self):
@@ -111,3 +119,15 @@ class Window(QMainWindow, Ui_MainWindow):
                 
             if folderPath != "":
                 subprocess.Popen("explorer %s"%os.path.normpath(folderPath))
+   
+    def _copyText(self):
+        """Copies the selected item text to the clipboad
+        """
+        selectedItem = self._selectedItems()
+        if selectedItem:
+            selectedItem = selectedItem[0]
+            # get the clipboard
+            clipboard = QGuiApplication.clipboard()
+            # set the text
+            clipboard.setText(selectedItem.text(0))
+

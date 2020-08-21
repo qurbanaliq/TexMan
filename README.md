@@ -9,8 +9,8 @@ Here are all the features that are currently offered by this tool and the ones w
 - Support for Maya textures.
 - Highlight missing textures (the ones that doesn't exist in the file system).
 - Browse texture folder (right-click on folder path or texture to browse).
+- Copy selected folder path(s) and texture name(s) to the clipboard.
 ### To be supported
 - Replace folder path to link the same textures from a new folder.
 - Remove textures from the scene (optionally from file system).
 - Export All or Selected textures to a folder.
-- Copy selected folder path(s) and texture name(s) to the clipboard.
